@@ -15,3 +15,8 @@ nav {
 	word-wrap: break-word;
 	margin: 5px 0;
 }
+
+input[type='text'].search {
+	background: #fff;
+	border-radius: 4px;
+}
