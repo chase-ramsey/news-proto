@@ -7,7 +7,7 @@ angular.module('proto', ['ngRoute'])
 			})
 	})
 	.constant('NYT_API', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=661baa76f11c4c7197d448b4ed508d1d')
-	.factory('nytimesData', function($http){
+	.factory('nytimesData', function($http, NYT_API){
 		return {
 			getNYT(userParams) {
 				return $http
@@ -15,18 +15,18 @@ angular.module('proto', ['ngRoute'])
 			}
 		}
 	})
-	.controller('StoryCtrl', function($scope) {
+	.controller('StoryCtrl', function($scope, nytimesData) {
 
-		let stories = null;
-
+		$scope.stories = null;
 		$scope.userInput = '';
+		$scope.searchWithin = '';
 
 		$scope.userSearch = function() {
 			let searchText = $scope.userInput;
-			searchText.split(' ').join('+');
-			console.log("searchText: ", searchText);
-			getNYT(`&q=${searchText}`)
-				.then(response => stories = response.docs);
+			let searchFormat = searchText.split(' ').join("+")
+			console.log("searchFormat: ", searchFormat);
+			nytimesData.getNYT(`&q=${searchText}`)
+				.then(res => $scope.stories = res.data.response.docs)
 				.then(console.log)
 		}
 

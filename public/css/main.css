@@ -1,0 +1,17 @@
+nav {
+	padding: 5px;
+}
+
+.search-form {
+	margin: 20px 0;
+}
+
+.card {
+	height: 300px;
+	overflow: scroll;
+}
+
+.card-content p {
+	word-wrap: break-word;
+	margin: 5px 0;
+}
