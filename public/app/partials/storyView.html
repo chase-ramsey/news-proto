@@ -1,0 +1,27 @@
+<nav>
+	<div class='nav-wrapper'>
+		<a href="#" class="brand-logo">News Proto</a>
+	</div>
+</nav>
+
+<div class='search-form row'>
+	<form ng-submit='userSearch()' class='col l4'>
+		<input type='text' ng-model='userInput' placeholder='Type search terms here'>
+		<button type='submit' class='btn'><i class='material-icons left'>search</i>Search</button>
+	</form>
+	<input type='text' ng-model='searchWithin' placeholder='Search within your results' class='col l4 offset-l1'>
+</div>
+
+
+<div class='row story-row'>
+	<div class='col l3' ng-repeat='story in stories | filter: searchWithin'>
+		<div class='card'>
+			<div class='card-content'>
+				<span class='card-title'>{{ story.headline.main }}</span>
+				<p>{{ story.byline.person.firstname}} {{ story.byline.person.lastname}}</p>
+				<p>{{ story.snippet }}</p>
+				<p><a href='{{story.web_url}}'>{{ story.web_url }}</a></p>
+				<p style='font-weight:500'>New York Times</p>
+		</div>
+	</div>
+</div>
